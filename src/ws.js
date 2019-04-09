@@ -1,7 +1,7 @@
 'use strict';
 
 const WebSocket = require('ws');
-const gateway = require('../rest/gateway');
+const gateway = require('./rest/gateway');
 
 const sendWS = (ws, op, d) => ws.send(JSON.stringify({ op, d }));
 
@@ -11,7 +11,7 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
     const data = JSON.parse(msg);
     if (data.op === 10) {
       sendWS(ws, 2, {
-        token: token,
+        token,
         properties: {
           $os: process.platform,
           $browser: 'Harmony',
@@ -21,7 +21,9 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
       });
       setInterval(sendWS, data.d.heartbeat_interval, ws, 1, null);
     }
-    if (data.t !== null) {
+    if (data.t === 'READY') {
+      ws.client = data.d;
+    } else {
       ws.emit(data.t, data.d);
       ws.emit('debug', data);
     }
@@ -29,6 +31,13 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
   return ws;
 };
 
+/**
+ * Initialize shards
+ * @arg {String} token Token sent to create a connection
+ * @arg {Number} [shardCount] Number of shards to connect
+ * @arg {Object} [options] WebSocket options
+ * @returns {Promise<Object[]>}
+ */
 const initializeShards = async (token, shardCount, options) => {
   let gw;
   let count = shardCount === undefined ? 1 : shardCount;
