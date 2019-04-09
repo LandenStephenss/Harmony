@@ -5,10 +5,10 @@ const zlib = require('zlib');
 
 const userAgent = 'DiscordBot (https://github.com/Apacheli/Harmony, 0.1.0)';
 
-const request = (method, path, token = null, body = null, reason = null) => {
+const request = (method, path, token, body, reason) => {
   return new Promise((resolve, reject) => {
     let url = `/api/v7/${path}`;
-    if (method === 'GET' && body !== null) {
+    if (method === 'GET' && body !== undefined) {
       url += `?${Object.keys(body).map((key) =>
         `${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`)
         .join('&')}`;
@@ -16,10 +16,10 @@ const request = (method, path, token = null, body = null, reason = null) => {
     const req = https.request({
       headers: {
         'Accept-Encoding': 'gzip,deflate',
-        Authorization: token,
+        Authorization: token === undefined ? null : token,
         'Content-Type': 'application/json',
         'User-Agent': userAgent,
-        'X-Audit-Log-Reason': reason
+        'X-Audit-Log-Reason': reason === undefined ? null : token
       },
       host: 'discordapp.com',
       method,
@@ -52,7 +52,7 @@ const request = (method, path, token = null, body = null, reason = null) => {
         }
       });
     });
-    if (method !== 'GET' && body !== null) {
+    if (method !== 'GET' && body !== undefined) {
       req.write(JSON.stringify(body));
     }
     req.end();

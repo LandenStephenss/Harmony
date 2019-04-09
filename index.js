@@ -8,5 +8,6 @@ module.exports = {
     message: require('./src/rest/message'),
     request: require('./src/rest/request')
   },
-  ws: require('./src/sharding/ws')
+  cdn: require('./src/cdn'),
+  ws: require('./src/ws')
 };

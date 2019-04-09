@@ -3,19 +3,19 @@
 const request = require('./request');
 
 /**
- * Get a gateway object from a bot
- * @arg {String} token Token used for authorizing the request
- * @returns {Promise<void>}
- */
-const getBotGateway = (token) => request('GET', 'gateway/bot', token);
-
-/**
  * Get the gateway object
  * @returns {Promise<Object>}
  */
 const getGateway = () => request('GET', 'gateway');
 
+/**
+ * Get a gateway object from a bot
+ * @arg {String} token Token used for authorizing the request
+ * @returns {Promise<Object>}
+ */
+const getBotGateway = (token) => request('GET', 'gateway/bot', token);
+
 module.exports = {
-  getBotGateway,
-  getGateway
+  getGateway,
+  getBotGateway
 };

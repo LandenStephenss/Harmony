@@ -1,6 +1,7 @@
 # Harmony
-A [Node.js](https://nodejs.org/) wrapper for making [Discord](https://discordapp.com/) bots.
+[![Discord](https://canary.discordapp.com/api/guilds/536724303522299925/widget.png?style=shield)](https://discord.gg/rNPmCBR)
 
+A [Node.js](https://nodejs.org/) wrapper for making [Discord](https://discordapp.com/) bots.
 ## Why Harmony?
 * Full coverage over Discord's API (not yet)
 * High-level, functional interface
@@ -10,6 +11,7 @@ A [Node.js](https://nodejs.org/) wrapper for making [Discord](https://discordapp
 ## Sample
 ```js
 const harmony = require('harmony');
+const token = 'Bot TOKEN';
 
 const onMessageCreate = (msg) => {
   if (msg.content === 'ping') {
@@ -19,14 +21,14 @@ const onMessageCreate = (msg) => {
   }
 };
 
-const main = async (token) => {
+const main = async () => {
   const shards = await harmony.ws.initializeShards(token);
   for (let i = 0; i < shards.length; ++i) {
     shards[i].on('MESSAGE_CREATE', onMessageCreate);
   }
 };
 
-main('Bot MjM4NDk0NzU2NTIxMzc3Nzky.CunGFQ.wUILz7z6HoJzVeq6pyHPmVgQgV4');
+main();
 ```
 
 ## Have any feedback?
