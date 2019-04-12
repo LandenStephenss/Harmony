@@ -17,13 +17,6 @@ const defaultAvatar = (id, format = 'png') =>
 const avatar = (userID, userAvatar, format = 'png') =>
   `avatars/${userID}/${userAvatar}.${format}`;
 
-const application = {
-  icon: (applicationID, applicationIcon, format = 'png') =>
-    `app-icons/${applicationID}/${applicationIcon}.${format}`,
-  asset: (applicationID, assetID, format = 'png') =>
-    `app-assets/${applicationID}/${assetID}.${format}`
-};
-
 module.exports = {
   baseURL: 'https://cdn.discordapp.com/',
   emoji,
@@ -31,6 +24,5 @@ module.exports = {
   splash,
   banner,
   defaultAvatar,
-  avatar,
-  application
+  avatar
 };

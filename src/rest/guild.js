@@ -21,8 +21,6 @@ const role = (guildID, roleID) => `guilds/${guildID}/roles/${roleID}`;
 
 const roles = (guildID) => `guilds/${guildID}/roles`;
 
-const invites = (guildID) => `guilds/${guildID}/invites`;
-
 const regions = (guildID) => `guilds/${guildID}/regions`;
 
 const integration = (guildID, integrationID) =>
@@ -290,15 +288,6 @@ const editRolePositions = (token, guildID, roles) =>
   request('PATCH', roles(guildID), token, roles);
 
 /**
- * Get a guild's invites
- * @arg {String} token Token used for authorizing the request
- * @arg {String} guildID The guild's id
- * @returns {Promise<Object[]>}
- */
-const getInvites = (token, guildID) =>
-  request('GET', invites(guildID), token);
-
-/**
  * Get a guild's voice regions
  * @arg {String} token Token used for authorizing the request
  * @arg {String} guildID The guild's id
@@ -307,6 +296,12 @@ const getInvites = (token, guildID) =>
 const getVoiceRegions = (token, guildID) =>
   request('GET', regions(guildID), token);
 
+/**
+ * Get a guild's integrations
+ * @arg {String} token Token used for authorizing the request
+ * @arg {String} guildID The guild's id
+ * @returns {Promise<Object[]>}
+ */
 const getIntegrations = (token, guildID) =>
   request('GET', integrations(guildID), token);
 
@@ -447,7 +442,6 @@ module.exports = {
     prune,
     role,
     roles,
-    invites,
     regions,
     integration,
     integrations,
@@ -478,7 +472,6 @@ module.exports = {
   deleteRole,
   editRole,
   editRolePositions,
-  getInvites,
   getVoiceRegions,
   getIntegrations,
   createIntegration,

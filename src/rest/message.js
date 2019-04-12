@@ -89,11 +89,11 @@ const deleteMessage = (token, channelID, messageID) =>
  * Bulk delete a channel's messages
  * @arg {String} token Token used for authorizing the request
  * @arg {String} channelID The channel's id
- * @arg {String[]} messageIDs An array of message ids
+ * @arg {String[]} messages An array of message ids
  * @returns {Promise<void>}
  */
-const bulkDeleteMessages = (token, channelID, messageIDs) =>
-  request('POST', bulkDelete(channelID), token, { messageIDs });
+const bulkDeleteMessages = (token, channelID, messages) =>
+  request('POST', bulkDelete(channelID), token, { messages });
 
 /**
  * Pin a message

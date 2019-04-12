@@ -23,10 +23,9 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
     }
     if (data.t === 'READY') {
       ws.client = data.d;
-    } else {
-      ws.emit(data.t, data.d);
-      ws.emit('debug', data);
     }
+    ws.emit(data.t, data.d);
+    ws.emit('debug', data);
   });
   return ws;
 };

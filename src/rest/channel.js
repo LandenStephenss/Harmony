@@ -11,8 +11,6 @@ const permission = (channelID, overwriteID) =>
 
 const typing = (channelID) => `channels/${channelID}/typing`;
 
-const invites = (channelID) => `channels/${channelID}/invites`;
-
 /**
  * Get a channel
  * @arg {String} token Token used for authorizing the request
@@ -71,6 +69,16 @@ const editChannel = (token, channelID, options) =>
   request('PATCH', channel(channelID), token, options);
 
 /**
+ * Edit guild channel positions
+ * @arg {String} token Token used for authorizing the request
+ * @arg {String} guildID The guild's id
+ * @arg {Object[]} channel An array of { id, position }
+ * @returns {Promise<void>}
+ */
+const editChannelPositions = (token, guildID, channels) =>
+  request('PATCH', guildChannels(guildID), token, channels);
+
+/**
  * Delete a channel
  * @arg {String} token Token used for authorizing the request
  * @arg {String} channelID The channel's id
@@ -112,44 +120,20 @@ const deleteOverwrite = (token, channelID, overwriteID) =>
 const triggerTypingIndicator = (token, channelID) =>
   request('POST', typing(channelID), token);
 
-/**
- * Get a channel's invites
- * @arg {String} token Token used for authorizing the request
- * @arg {String} channelID The channel's id
- * @returns {Promise<Object[]>}
- */
-const getInvites = (token, channelID) =>
-  request('GET', invites(channelID), token);
-
-/**
- * Create a channel invite
- * @arg {String} token Token used for authorizing the request
- * @arg {String} channelID The channel's id
- * @arg {Object} [options] Options for the request
- * @arg {Number} [options.max_age] The invite's time before expiring
- * @arg {Number} [options.max_uses] Max amount of uses
- * @arg {Boolean} [options.temporary] Temporary membership
- * @arg {Boolean} [options.unique] If the invite should be unique
- */
-const createInvite = (token, channelID, options) =>
-  request('POST', invites(channelID), token, options);
-
 module.exports = {
   paths: {
     channel,
     guildChannels,
     permission,
-    typing,
-    invites
+    typing
   },
   getChannel,
   getChannels,
   createChannel,
   deleteChannel,
   editChannel,
+  editChannelPositions,
   deleteOverwrite,
   editOverwrite,
-  triggerTypingIndicator,
-  getInvites,
-  createInvite
+  triggerTypingIndicator
 };
