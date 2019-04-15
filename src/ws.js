@@ -5,7 +5,9 @@ const gateway = require('./rest/gateway');
 
 const sendWS = (ws, op, d) => ws.send(JSON.stringify({ op, d }));
 
-const connect = (token, gatewayURL, options, id, shardCount) => {
+const clients = [];
+
+const connect = (token, gatewayURL, options, id, shardCount, z) => {
   const ws = new WebSocket(gatewayURL, options);
   ws.on('message', (msg) => {
     const data = JSON.parse(msg);
@@ -22,13 +24,26 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
       setInterval(sendWS, data.d.heartbeat_interval, ws, 1, null);
     }
     if (data.t === 'READY') {
-      ws.client = data.d;
+      data.d.guilds = {};
+      clients[z] = data.d;
+    } else if (data.t === 'GUILD_CREATE') {
+      clients[z].guilds[data.d.id] = data.d;
+      clients[z].guilds[data.d.id].shard = id;
+    } else if (data.t === 'GUILD_UPDATE') {
+      const keys = Object.keys(data.d);
+      for (let i = 0; i < keys.length; ++i) {
+        clients[z].guilds[data.d.id][keys[i]] = data.d[keys[i]];
+      }
+    } else if (data.t === 'GUILD_DELETE') {
+      delete clients[z].guilds[data.d.id];
     }
     ws.emit(data.t, data.d);
     ws.emit('debug', data);
   });
   return ws;
 };
+
+let x = -1;
 
 /**
  * Initialize shards
@@ -39,6 +54,7 @@ const connect = (token, gatewayURL, options, id, shardCount) => {
  */
 const initializeShards = async (token, shardCount, options) => {
   let gw;
+  ++x;
   let count = shardCount === undefined ? 1 : shardCount;
   if (token.slice(0, -4) === 'Bot ') {
     gw = await gateway.getBotGateway(token);
@@ -50,12 +66,13 @@ const initializeShards = async (token, shardCount, options) => {
   }
   const shards = new Array(count);
   for (let i = 0; i < count; ++i) {
-    shards[i] = connect(token, gw.url, options, i, count);
+    shards[i] = connect(token, gw.url, options, i, count, x);
   }
   return shards;
 };
 
 module.exports = {
+  clients,
   connect,
   initializeShards
 };

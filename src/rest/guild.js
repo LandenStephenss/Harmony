@@ -4,6 +4,8 @@ const request = require('./request');
 
 const guild = (guildID) => `guilds/${guildID}`;
 
+const meGuild = (guildID) => `users/@me/guilds/${guildID}`;
+
 const ban = (guildID, userID) => `guilds/${guildID}/bans/${userID}`;
 
 const bans = (guildID) => `guilds/${guildID}/bans`;
@@ -34,6 +36,8 @@ const vanity = (guildID) => `guilds/${guildID}/vanity-url`;
 
 const embed = (guildID) => `guilds/${guildID}/embed`;
 
+const auditLogs = (guildID) => `guilds/${guildID}/audit-logs`;
+
 const emoji = (guildID, emojiID) => `guilds/${guildID}/emojis/${emojiID}`;
 
 const emojis = (guildID) => `guilds/${guildID}/emojis`;
@@ -44,7 +48,8 @@ const emojis = (guildID) => `guilds/${guildID}/emojis`;
  * @arg {String} guildID The guild's id
  * @returns {Promise<Object>}
  */
-const getGuild = (token, guildID) => request('GET', guild(guildID), token);
+const getGuild = (token, guildID) =>
+  request('GET', guild(guildID), token);
 
 /**
  * Create a guild
@@ -62,7 +67,7 @@ const getGuild = (token, guildID) => request('GET', guild(guildID), token);
  * @returns {Promise<Object>}
  */
 const createGuild = (token, options) =>
-  request('GET', 'guilds', token, options);
+  request('POST', 'guilds', token, options);
 
 /**
  * Edit a guild
@@ -93,6 +98,15 @@ const editGuild = (token, guildID, options) =>
  */
 const deleteGuild = (token, guildID) =>
   request('DELETE', guild(guildID), token);
+
+/**
+ * Leave a guild
+ * @arg {String} token Token used for authorizing the request
+ * @arg {String} guildID The guild's id
+ * @returns {Promise<void>}
+ */
+const leaveGuild = (token, guildID) =>
+  request('DELETE', meGuild(guildID), token);
 
 /**
  * Get a ban object
@@ -184,16 +198,16 @@ const kickMember = (token, guildID, userID) =>
 
 /**
  * Ban a member
- * (Note: It's actually delete-message-days, but JSDocs are dumb)
  * @arg {String} token Token used for authorizing the request
  * @arg {String} guildID The guild's id
  * @arg {String} userID The user's id
- * @arg {Object} [options] Options for the request
- * @arg {Number} [options.delete_message_days] Number of days to delete
+ * @arg {Number} [days] The amount days to delete
  * @returns {Promise<void>}
  */
-const banMember = (token, guildID, userID, options) =>
-  request('PUT', ban(guildID, userID), token, options);
+const banMember = (token, guildID, userID, days = null) =>
+  request('PUT', ban(guildID, userID), token, {
+    'delete-message-days': days
+  });
 
 /**
  * Unban a member
@@ -378,6 +392,20 @@ const getVanityURL = (token, guildID) =>
   request('GET', vanity(guildID), token);
 
 /**
+ * Get the guild vanity url
+ * @arg {String} token Token used for authorizing the request
+ * @arg {String} guildID The guild's id
+ * @arg {Object} [options] Query string parameters
+ * @arg {String} [options.user_id] Filter for this user
+ * @arg {Number} [options.action] The type of event action
+ * @arg {String} [options.before] Get the logs before this entry id
+ * @arg {Number} [options.limit] The number of logs to get
+ * @returns {Promise<Object>}
+ */
+const getAuditLogs = (token, guildID, options) =>
+  request('GET', auditLogs(guildID), token, options);
+
+/**
  * Get an emoji
  * @arg {String} token Token used for authorizing the request
  * @arg {String} guildID The guild's id
@@ -435,6 +463,7 @@ const deleteEmoji = (token, guildID, emojiID) =>
 module.exports = {
   paths: {
     guild,
+    meGuild,
     ban,
     bans,
     member,
@@ -448,12 +477,14 @@ module.exports = {
     embed,
     sync,
     vanity,
+    auditLogs,
     emoji,
     emojis
   },
   getGuild,
   createGuild,
   deleteGuild,
+  leaveGuild,
   editGuild,
   getBan,
   getBans,
@@ -481,6 +512,7 @@ module.exports = {
   getEmbed,
   editEmbed,
   getVanityURL,
+  getAuditLogs,
   getEmoji,
   getEmojis,
   createEmoji,

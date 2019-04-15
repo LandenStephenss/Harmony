@@ -50,6 +50,15 @@ const createChannel = (token, guildID, options) =>
   request('POST', guildChannels(guildID), token, options);
 
 /**
+ * Create a private channel with a user
+ * @arg {String} token Token used for authorizing the request
+ * @arg {String} userID The user's id
+ * @returns {Promise<Object>}
+ */
+const createPrivateChannel = (token, userID) =>
+  request('POST', 'users/@me/channels', token, { recipient_id: userID });
+
+/**
  * Edit a channel
  * @arg {String} token Token used for authorizing the request
  * @arg {String} channelID The channel's id
@@ -130,6 +139,7 @@ module.exports = {
   getChannel,
   getChannels,
   createChannel,
+  createPrivateChannel,
   deleteChannel,
   editChannel,
   editChannelPositions,

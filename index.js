@@ -8,6 +8,7 @@ module.exports = {
     invite: require('./src/rest/invite'),
     message: require('./src/rest/message'),
     request: require('./src/rest/request'),
+    user: require('./src/rest/user'),
     webhook: require('./src/rest/webhook')
   },
   cdn: require('./src/cdn'),

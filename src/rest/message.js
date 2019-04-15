@@ -92,8 +92,17 @@ const deleteMessage = (token, channelID, messageID) =>
  * @arg {String[]} messages An array of message ids
  * @returns {Promise<void>}
  */
-const bulkDeleteMessages = (token, channelID, messages) =>
-  request('POST', bulkDelete(channelID), token, { messages });
+const bulkDeleteMessages = (token, channelID, messages) => {
+  if (messages.length < 2) {
+    return deleteMessage(token, channelID, messages[0]);
+  }
+  if (messages.length > 100) {
+    return bulkDeleteMessages(token, channelID, {
+      messages: messages.splice(0, 100)
+    });
+  }
+  return request('POST', bulkDelete(channelID), token, { messages });
+};
 
 /**
  * Pin a message

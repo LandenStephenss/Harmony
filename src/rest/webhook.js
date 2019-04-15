@@ -87,7 +87,7 @@ const deleteWebhookFromToken = (webhookID, webhookToken) =>
  * @arg {String} [options.channel_id] Move the default channel
  * @returns {Promise<void>}
  */
-const editWebhook = (token, webhookID) =>
+const editWebhook = (token, webhookID, options) =>
   request('PATCH', webhook(webhookID), token, options);
 
 /**
