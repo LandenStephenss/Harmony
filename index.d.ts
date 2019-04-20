@@ -2,6 +2,8 @@
  * Type definitions for Apacheli/Harmony discord lib, by o_Hinoki.
  */
 
+import { WebSocket } from "ws";
+
 
 interface ChannelOptions {
     type: number,
@@ -737,36 +739,36 @@ declare namespace Harmony {
 
         function emoji(
             emojiID: string,
-            format: string = 'png'
+            format: string
         ): string;
 
         function icon(
             guildID: string,
             guildIcon: string,
-            format: string = 'png'
+            format: string
         ): string;
 
         function splash(
             guildID: string,
             guildSplash: string,
-            format: string = 'png'
+            format: string
         ): string;
 
         function banner(
             guildID: string,
             guildBanner: string,
-            format: string = 'png'
+            format: string
         ): string;
 
         function defaultAvatar(
             id: string,
-            format: string = 'png'
+            format: string
         ): string;
 
         function avatar(
             userID: string,
             userAvatar: string,
-            format: string = 'png'
+            format: string
         ): string;
     }
 
@@ -779,7 +781,7 @@ declare namespace Harmony {
         ): void;
         */
 
-        const clients: Array;
+        const clients: Array<object>;
 
         function connect(
             token: string,
