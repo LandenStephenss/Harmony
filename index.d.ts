@@ -2,7 +2,7 @@
  * Type definitions for Apacheli/Harmony discord lib, by o_Hinoki.
  */
 
-import { WebSocket } from "ws";
+import * as WebSocket from "ws";
 
 
 interface ChannelOptions {
@@ -91,14 +91,14 @@ declare namespace Harmony {
             function deleteOverwrite(
                 token: string,
                 channelID: string,
-                overwrite: stringID
+                overwrite: string
             ): Promise<void>;
 
             function triggerTypingIndicator(
                 token: string,
                 channelID: string
             ): Promise<void>;
-        };
+        }
 
         namespace gateway {
             function getGateway(): Promise<object>;
@@ -106,7 +106,7 @@ declare namespace Harmony {
             function getBotGateway(
                 token: string
             ): Promise<object>;
-        };
+        }
 
         namespace guild {
             function guild(
@@ -466,7 +466,7 @@ declare namespace Harmony {
                 guildID: string,
                 emojiID: string
             ): Promise<void>;
-        };
+        }
 
         namespace invite {
             function getInvite(
@@ -500,7 +500,7 @@ declare namespace Harmony {
                 token: string,
                 inviteCode: string
             ): Promise<void>;
-        };
+        }
 
         namespace message {
             function message(channelID, messageID): string;
@@ -517,7 +517,7 @@ declare namespace Harmony {
 
             function reactions(channelID, messageID): string;
 
-            function userReaction(channelID, messageID, emoji, user = '@me'): string;
+            function userReaction(channelID, messageID, emoji, user): string;
 
             function getMessage(token, channelID, messageID): Promise<object>;
 
@@ -614,7 +614,7 @@ declare namespace Harmony {
                 channelID: string,
                 messageID: string
             ): Promise<void>;
-        };
+        }
 
         namespace request {
             function request(
@@ -624,7 +624,7 @@ declare namespace Harmony {
                 body: string,
                 reason: string
             ): Promise<any>;
-        };
+        }
 
         namespace user {
             function user(
@@ -643,7 +643,7 @@ declare namespace Harmony {
                     avatar: string
                 }
             ): Promise<object>;
-        };
+        }
 
         namespace webhook {
             function webhook(
@@ -733,7 +733,7 @@ declare namespace Harmony {
                     embeds: object[]
                 }
             ): Promise<void>;
-        };
+        }
 
     }
 
@@ -801,4 +801,4 @@ declare namespace Harmony {
             options: WebSocket.ClientOptions
         ): WebSocket[];
     }
-};
+}
