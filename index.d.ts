@@ -39,29 +39,29 @@ declare namespace Harmony {
             function getChannel(
                 token: string,
                 channelID: string
-            ): Promise;
+            ): Promise<object>;
 
             function getChannels(
                 token: string,
                 guildID: string
-            ): Promise;
+            ): Promise<object[]>;
 
             function createChannel(
                 token: string,
                 guildID: string,
                 options: ChannelOptions
-            ): Promise;
+            ): Promise<object>;
 
             function createPrivateChannel(
                 token: string,
                 userID: string
-            ): Promise;
+            ): Promise<object>;
 
             function editChannel(
                 token: string,
                 channelID: string,
                 options: ChannelOptions
-            ): Promise;
+            ): Promise<object>;
 
             function editChannelPositions(
                 token: string,
@@ -75,7 +75,7 @@ declare namespace Harmony {
             function deleteChannel(
                 token: string,
                 channelID: string
-            ): Promise;
+            ): Promise<object>;
 
             function editOverwrite(
                 token: string,
@@ -86,26 +86,26 @@ declare namespace Harmony {
                     deny: number,
                     type: string
                 }
-            )
+            ): Promise<void>;
 
             function deleteOverwrite(
                 token: string,
                 channelID: string,
                 overwrite: stringID
-            )
+            ): Promise<void>;
 
             function triggerTypingIndicator(
                 token: string,
                 channelID: string
-            )
+            ): Promise<void>;
         };
 
         namespace gateway {
-            function getGateway(): Promise;
+            function getGateway(): Promise<object>;
 
             function getBotGateway(
                 token: string
-            ): Promise;
+            ): Promise<object>;
         };
 
         namespace guild {
@@ -275,40 +275,40 @@ declare namespace Harmony {
                     deaf: boolean,
                     channel_id: string
                 }
-            ): Promise;
+            ): Promise<void>;
 
             function addMemberRole(
                 token: string,
                 guildID: string,
                 userID: string,
                 roleID: string
-            ): Promise;
+            ): Promise<void>;
 
             function removeMemberRole(
                 token: string,
                 guildID: string,
                 userID: string,
                 roleID: string
-            ): Promise;
+            ): Promise<void>;
 
             function kickMember(
                 token: string,
                 guildID: string,
                 userID: string
-            ): Promise;
+            ): Promise<void>;
 
             function banMember(
                 token: string,
                 guildID: string,
                 userID: string,
-                days = null
-            ): Promise;
+                days: number
+            ): Promise<void>;
 
             function unbanMember(
                 token: string,
                 guildID: string,
                 userID: string
-            ): Promise;
+            ): Promise<void>;
 
             function getPruneCount(
                 token: string,
@@ -316,7 +316,7 @@ declare namespace Harmony {
                 option: {
                     days: number
                 }
-            ): Promise;
+            ): Promise<object>;
 
             function pruneMembers(
                 token: string,
@@ -325,12 +325,12 @@ declare namespace Harmony {
                     days: number
                     compute_prune_count: boolean
                 }
-            ): Promise<void>;
+            ): Promise<object>;
 
             function getRoles(
                 token: string,
                 guildID: string
-            ): Promise;
+            ): Promise<void>;
 
             function createRole(
                 token: string,
@@ -342,7 +342,7 @@ declare namespace Harmony {
                     hoist: boolean,
                     mentionable: boolean
                 }
-            ): Promise;
+            ): Promise<object>;
 
             function deleteRole(
                 token: string,
@@ -366,15 +366,18 @@ declare namespace Harmony {
             function editRolePositions(
                 token: string,
                 guildID: string,
-                roles): Promise<object[]>;
+                roles
+            ): Promise<object[]>;
 
             function getVoiceRegions(
                 token: string,
-                guildID: string): Promise<string[]>;
+                guildID: string
+            ): Promise<string[]>;
 
             function getIntegrations(
                 token: string,
-                guildID: string): Promise<object[]>;
+                guildID: string
+            ): Promise<object[]>;
 
             function createIntegration(
                 token: string,
@@ -491,7 +494,7 @@ declare namespace Harmony {
                     temporary: boolean,
                     unique: boolean
                 }
-            ): Promise;
+            ): Promise<object>;
 
             function deleteInvite(
                 token: string,
