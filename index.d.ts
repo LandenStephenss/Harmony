@@ -503,23 +503,51 @@ declare namespace Harmony {
         }
 
         namespace message {
-            function message(channelID, messageID): string;
+            function message(
+                channelID: string, 
+                messageID: string
+            ): string;
 
-            function messages(channelID): string;
+            function messages(
+                channelID: string
+            ): string;
 
-            function bulkDelete(channelID): string;
+            function bulkDelete(
+                channelID: string
+            ): string;
 
-            function pin(channelID, messageID): string;
+            function pin(
+                channelID: string, 
+                messageID: string
+            ): string;
 
-            function pins(channelID): string;
+            function pins(
+                channelID: string
+            ): string;
 
-            function reaction(channelID, messageID, emoji): string;
+            function reaction(
+                channelID: string, 
+                messageID: string, 
+                emoji: string
+            ): string;
 
-            function reactions(channelID, messageID): string;
+            function reactions(
+                channelID: string, 
+                messageID: string
+            ): string;
 
-            function userReaction(channelID, messageID, emoji, user): string;
+            function userReaction(
+                channelID: string, 
+                messageID: string,
+                emoji: string, 
+                user: string
+            ): string;
 
-            function getMessage(token, channelID, messageID): Promise<object>;
+            function getMessage(
+                token: string, 
+                channelID: string, 
+                messageID: string
+            ): Promise<object>;
 
             function getMessages(
                 token,
