@@ -792,7 +792,7 @@ declare namespace Harmony {
             options: WebSocket.ClientOptions,
             id: string,
             shardCount: number,
-            z: any
+            z: number
         ): WebSocket;
 
         function initializeShards(
