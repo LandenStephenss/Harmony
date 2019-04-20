@@ -25,5 +25,8 @@
   "homepage": "https://github.com/Apacheli/Harmony#readme",
   "dependencies": {
     "ws": "^6.2.1"
+  },
+  "optionalDependencies": {
+    "@types/ws": "^6.0.1"
   }
 }

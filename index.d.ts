@@ -2,40 +2,41 @@
  * Type definitions for Apacheli/Harmony discord lib, by o_Hinoki.
  */
 
-import * as WebSocket from "ws";
+declare module 'harmony' {
+    import * as WebSocket from 'ws';
 
+    interface ChannelOptions {
+        type: number,
+        topic: string,
+        bitrate: number,
+        user_limit: number,
+        rate_limit_per_user: number
+        position: number,
+        permission_overwrites: object[],
+        parent_id: string,
+        nsfw: boolean
+    }
 
-interface ChannelOptions {
-    type: number,
-    topic: string,
-    bitrate: number,
-    user_limit: number,
-    rate_limit_per_user: number
-    position: number,
-    permission_overwrites: object[],
-    parent_id: string,
-    nsfw: boolean
-}
-declare namespace Harmony {
     namespace rest {
         namespace channel {
-            function channel(
-                channelID: string
-            ): string;
+            namespace paths {
+                function channel(
+                    channelID: string
+                ): string;
 
-            function guildChannels(
-                guildID: string
-            ): string;
+                function guildChannels(
+                    guildID: string
+                ): string;
 
-            function permission(
-                channelID: string,
-                overwriteID: string
-            ): string;
+                function permission(
+                    channelID: string,
+                    overwriteID: string
+                ): string;
 
-            function typings(
-                channelID: string
-            ): string;
-
+                function typings(
+                    channelID: string
+                ): string;
+            }
             function getChannel(
                 token: string,
                 channelID: string
@@ -66,10 +67,7 @@ declare namespace Harmony {
             function editChannelPositions(
                 token: string,
                 guildID: string,
-                channel: {
-                    id: string,
-                    position: number
-                }
+                channels: object[]
             ): Promise<void>;
 
             function deleteChannel(
@@ -109,89 +107,90 @@ declare namespace Harmony {
         }
 
         namespace guild {
-            function guild(
-                guildID: string
-            ): string;
+            namespace paths {
+                function guild(
+                    guildID: string
+                ): string;
 
-            function meGuild(
-                guildID: string
-            ): string;
+                function meGuild(
+                    guildID: string
+                ): string;
 
-            function ban(
-                guildID: string,
-                userID: string
-            ): string;
+                function ban(
+                    guildID: string,
+                    userID: string
+                ): string;
 
-            function bans(
-                guildID: string
-            ): string;
+                function bans(
+                    guildID: string
+                ): string;
 
-            function member(
-                guildID: string,
-                userID: string
-            ): string;
+                function member(
+                    guildID: string,
+                    userID: string
+                ): string;
 
-            function members(
-                guildID: string
-            ): string;
+                function members(
+                    guildID: string
+                ): string;
 
-            function memberRole(
-                guildID: string,
-                userID: string,
-                roleID: string
-            ): string;
+                function memberRole(
+                    guildID: string,
+                    userID: string,
+                    roleID: string
+                ): string;
 
-            function prune(
-                guildID: string
-            ): string;
+                function prune(
+                    guildID: string
+                ): string;
 
-            function role(
-                guildID: string,
-                roleID: string
-            ): string;
+                function role(
+                    guildID: string,
+                    roleID: string
+                ): string;
 
-            function roles(
-                guildID: string
-            ): string;
+                function roles(
+                    guildID: string
+                ): string;
 
-            function regions(
-                guildID: string
-            ): string;
+                function regions(
+                    guildID: string
+                ): string;
 
-            function integration(
-                guildID: string,
-                integrationID: string
-            ): string;
+                function integration(
+                    guildID: string,
+                    integrationID: string
+                ): string;
 
-            function integrations(
-                guildID: string
-            ): string;
+                function integrations(
+                    guildID: string
+                ): string;
 
-            function sync(
-                guildID: string
-            ): string;
+                function sync(
+                    guildID: string
+                ): string;
 
-            function vanity(
-                guildID: string
-            ): string;
+                function vanity(
+                    guildID: string
+                ): string;
 
-            function embed(
-                guildID: string
-            ): string;
+                function embed(
+                    guildID: string
+                ): string;
 
-            function auditLogs(
-                guildID: string
-            ): string;
+                function auditLogs(
+                    guildID: string
+                ): string;
 
-            function emoji(
-                guildID: string,
-                emojiID: string
-            ): string;
+                function emoji(
+                    guildID: string,
+                    emojiID: string
+                ): string;
 
-            function emojis(
-                guildID: string
-            ): string;
-
+                function emojis(
+                    guildID: string
+                ): string;
+            }
             function getGuild(
                 token: string,
                 guildID: string
@@ -215,19 +214,19 @@ declare namespace Harmony {
                 token: string,
                 guildID: string,
                 options: {
-                    name: string,
-                    region: string,
-                    verification_level: number,
-                    default_message_notifications: number,
-                    explicit_content_filter: number,
-                    afk_channel_id: string,
-                    afk_timeout: number,
-                    icon: string,
-                    owner_id: string,
-                    splash: string,
-                    system_channel_id: string
+                    name?: string,
+                    region?: string,
+                    verification_level?: number,
+                    default_message_notifications?: number,
+                    explicit_content_filter?: number,
+                    afk_channel_id?: string,
+                    afk_timeout?: number,
+                    icon?: string,
+                    owner_id?: string,
+                    splash?: string,
+                    system_channel_id?: string
                 }
-            ): Promise<Object>;
+            ): Promise<object>;
 
             function deleteGuild(
                 token: string,
@@ -243,37 +242,37 @@ declare namespace Harmony {
                 token: string,
                 guildID: string,
                 userID: string
-            ): Promise<Object>;
+            ): Promise<object>;
 
             function getBans(
                 token: string,
                 guildID: string
-            ): Promise<Object[]>;
+            ): Promise<object[]>;
 
             function getMember(
                 token: string,
                 guildID: string,
                 userID: string
-            ): Promise<Object>;
+            ): Promise<object>;
 
             function getMembers(
                 token: string,
                 guildID: string,
-                options: {
-                    limit: number,
-                    after: string
+                options?: {
+                    limit?: number,
+                    after?: string
                 }
-            ): Promise<Object[]>;
+            ): Promise<object[]>;
 
             function editMember(
                 token: string,
                 guildID: string,
                 userID: string,
-                options: {
-                    nick: string,
-                    mute: boolean,
-                    deaf: boolean,
-                    channel_id: string
+                options?: {
+                    nick?: string,
+                    mute?: boolean,
+                    deaf?: boolean,
+                    channel_id?: string
                 }
             ): Promise<void>;
 
@@ -301,7 +300,7 @@ declare namespace Harmony {
                 token: string,
                 guildID: string,
                 userID: string,
-                days: number
+                days?: number
             ): Promise<void>;
 
             function unbanMember(
@@ -313,17 +312,17 @@ declare namespace Harmony {
             function getPruneCount(
                 token: string,
                 guildID: string,
-                option: {
-                    days: number
+                options?: {
+                    days?: number
                 }
             ): Promise<object>;
 
             function pruneMembers(
                 token: string,
-                guildID,
-                options: {
-                    days: number
-                    compute_prune_count: boolean
+                guildID: string,
+                options?: {
+                    days?: number
+                    compute_prune_count?: boolean
                 }
             ): Promise<object>;
 
@@ -335,12 +334,12 @@ declare namespace Harmony {
             function createRole(
                 token: string,
                 guildID: string,
-                options: {
-                    name: string,
-                    permissions: number,
-                    color: number,
-                    hoist: boolean,
-                    mentionable: boolean
+                options?: {
+                    name?: string,
+                    permissions?: number,
+                    color?: number,
+                    hoist?: boolean,
+                    mentionable?: boolean
                 }
             ): Promise<object>;
 
@@ -355,18 +354,18 @@ declare namespace Harmony {
                 guildID: string,
                 roleID: string,
                 options: {
-                    name: string,
-                    permissions: number,
-                    color: number,
-                    hoist: boolean,
-                    mentionable: boolean
+                    name?: string,
+                    permissions?: number,
+                    color?: number,
+                    hoist?: boolean,
+                    mentionable?: boolean
                 }
             ): Promise<object>;
 
             function editRolePositions(
                 token: string,
                 guildID: string,
-                roles
+                roles: object[]
             ): Promise<object[]>;
 
             function getVoiceRegions(
@@ -399,11 +398,11 @@ declare namespace Harmony {
                 guildID: string,
                 integrationID: string,
                 options: {
-                    expire_behaviour: number,
-                    expire_grace_period: number,
-                    enable_emoticons: boolean
+                    expire_behaviour?: number,
+                    expire_grace_period?: number,
+                    enable_emoticons?: boolean
                 }
-            ): Promise<void>
+            ): Promise<void>;
 
             function syncIntegration(
                 token: string,
@@ -418,7 +417,7 @@ declare namespace Harmony {
             function editEmbed(
                 token: string,
                 guildID: string,
-                options
+                options: object
             ): Promise<object>;
 
             function getVanityURL(
@@ -429,11 +428,11 @@ declare namespace Harmony {
             function getAuditLogs(
                 token: string,
                 guildID: string,
-                options: {
-                    user_id: string,
-                    action: number,
-                    before: string,
-                    limit: number
+                options?: {
+                    user_id?: string,
+                    action?: number,
+                    before?: string,
+                    limit?: number
                 }
             ): Promise<object>;
 
@@ -451,14 +450,21 @@ declare namespace Harmony {
             function createEmoji(
                 token: string,
                 guildID: string,
-                options
+                options: {
+                    name: string,
+                    image: string,
+                    roles?: string[]
+                }
             ): Promise<object>;
 
             function editEmoji(
                 token: string,
                 guildID: string,
                 emojiID: string,
-                options
+                options: {
+                    name?: string,
+                    roles?: string[]
+                }
             ): Promise<object>;
 
             function deleteEmoji(
@@ -469,10 +475,25 @@ declare namespace Harmony {
         }
 
         namespace invite {
+            namespace paths {
+                function invite(
+                    inviteCode: string
+                ): string;
+
+                function channelInvites(
+                    channelID: string
+                ): string;
+
+                function guildInvites(
+                    guildID: string
+                ): string;
+            }
             function getInvite(
                 token: string,
                 inviteCode: string,
-                options
+                options?: {
+                    with_count?: boolean
+                }
             ): Promise<object>;
 
             function getChannelInvites(
@@ -488,11 +509,11 @@ declare namespace Harmony {
             function createInvite(
                 token: string,
                 channelID: string,
-                options: {
-                    max_age: number,
-                    max_uses: number,
-                    temporary: boolean,
-                    unique: boolean
+                options?: {
+                    max_age?: number,
+                    max_uses?: number,
+                    temporary?: boolean,
+                    unique?: boolean
                 }
             ): Promise<object>;
 
@@ -503,60 +524,61 @@ declare namespace Harmony {
         }
 
         namespace message {
-            function message(
-                channelID: string, 
-                messageID: string
-            ): string;
+            namespace paths {
+                function message(
+                    channelID: string,
+                    messageID: string
+                ): string;
 
-            function messages(
-                channelID: string
-            ): string;
+                function messages(
+                    channelID: string
+                ): string;
 
-            function bulkDelete(
-                channelID: string
-            ): string;
+                function bulkDelete(
+                    channelID: string
+                ): string;
 
-            function pin(
-                channelID: string, 
-                messageID: string
-            ): string;
+                function pin(
+                    channelID: string,
+                    messageID: string
+                ): string;
 
-            function pins(
-                channelID: string
-            ): string;
+                function pins(
+                    channelID: string
+                ): string;
 
-            function reaction(
-                channelID: string, 
-                messageID: string, 
-                emoji: string
-            ): string;
+                function reaction(
+                    channelID: string,
+                    messageID: string,
+                    emoji: string
+                ): string;
 
-            function reactions(
-                channelID: string, 
-                messageID: string
-            ): string;
+                function reactions(
+                    channelID: string,
+                    messageID: string
+                ): string;
 
-            function userReaction(
-                channelID: string, 
-                messageID: string,
-                emoji: string, 
-                user: string
-            ): string;
-
+                function userReaction(
+                    channelID: string,
+                    messageID: string,
+                    emoji: string,
+                    user: string
+                ): string;
+            }
             function getMessage(
-                token: string, 
-                channelID: string, 
+                token: string,
+                channelID: string,
                 messageID: string
             ): Promise<object>;
 
             function getMessages(
-                token,
-                channelID,
-                options: {
-                    after: string,
-                    before: string,
-                    around: string,
-                    limit: number
+                token: string,
+                channelID: string,
+                options?: {
+                    after?: string,
+                    before?: string,
+                    around?: string,
+                    limit?: number
                 }
             ): Promise<object[]>;
 
@@ -564,10 +586,10 @@ declare namespace Harmony {
                 token: string,
                 channelID: string,
                 options: {
-                    content: string,
-                    embed: object,
-                    nonce: string,
-                    tts: boolean
+                    content?: string,
+                    embed?: object,
+                    nonce?: string,
+                    tts?: boolean
                 }
             ): Promise<object>;
 
@@ -576,8 +598,8 @@ declare namespace Harmony {
                 channelID: string,
                 messageID: string,
                 options: {
-                    content: string,
-                    embed: object
+                    content?: string,
+                    embed?: object
                 }
             ): Promise<object>;
 
@@ -615,10 +637,10 @@ declare namespace Harmony {
                 channelID: string,
                 messageID: string,
                 emoji: string,
-                options: {
-                    after: string,
-                    before: string,
-                    limit: number
+                options?: {
+                    after?: string,
+                    before?: string,
+                    limit?: number
                 }
             ): Promise<object[]>;
 
@@ -634,7 +656,7 @@ declare namespace Harmony {
                 channelID: string,
                 messageID: string,
                 emoji: string,
-                user: string
+                user?: string
             ): Promise<void>;
 
             function deleteAllReactions(
@@ -644,21 +666,20 @@ declare namespace Harmony {
             ): Promise<void>;
         }
 
-        namespace request {
-            function request(
-                method: string,
-                path: string,
-                token: string,
-                body: string,
-                reason: string
-            ): Promise<any>;
-        }
+        function request(
+            method: string,
+            path: string,
+            token: string,
+            body: string,
+            reason: string
+        ): Promise<any>;
 
         namespace user {
-            function user(
-                userID: string
-            ): string;
-
+            namespace paths {
+                function user(
+                    userID: string
+                ): string;
+            }
             function getUser(
                 token: string,
                 userID: string
@@ -667,30 +688,31 @@ declare namespace Harmony {
             function editSelf(
                 token: string,
                 options: {
-                    username: string,
-                    avatar: string
+                    username?: string,
+                    avatar?: string
                 }
             ): Promise<object>;
         }
 
         namespace webhook {
-            function webhook(
-                webhookID: string
-            ): string;
+            namespace paths {
+                function webhook(
+                    webhookID: string
+                ): string;
 
-            function tokenWebhook(
-                webhookID: string,
-                webhookToken: string
-            ): string;
+                function tokenWebhook(
+                    webhookID: string,
+                    webhookToken: string
+                ): string;
 
-            function channelWebhooks(
-                channelID: string
-            ): string;
+                function channelWebhooks(
+                    channelID: string
+                ): string;
 
-            function guildWebhooks(
-                guildID: string
-            ): string;
-
+                function guildWebhooks(
+                    guildID: string
+                ): string;
+            }
             function getWebhook(
                 token: string,
                 webhookID: string
@@ -734,18 +756,18 @@ declare namespace Harmony {
                 token: string,
                 webhookID: string,
                 options: {
-                    name: string,
-                    avatar: string,
-                    channel_id: string
+                    name?: string,
+                    avatar?: string,
+                    channel_id?: string
                 }): Promise<void>;
 
             function editWebhookFromToken(
                 webhookID: string,
                 webhookToken: string,
                 options: {
-                    name: string,
-                    avatar: string,
-                    channel_id: string
+                    name?: string,
+                    avatar?: string,
+                    channel_id?: string
                 }
             ): Promise<void>;
 
@@ -754,15 +776,14 @@ declare namespace Harmony {
                 webhookID: string,
                 webhookToken: string,
                 options: {
-                    content: string,
-                    username: string,
-                    avatar_url: string,
-                    tts: boolean,
-                    embeds: object[]
+                    content?: string,
+                    username?: string,
+                    avatar_url?: string,
+                    tts?: boolean,
+                    embeds?: object[]
                 }
             ): Promise<void>;
         }
-
     }
 
     namespace cdn {
@@ -770,49 +791,47 @@ declare namespace Harmony {
 
         function emoji(
             emojiID: string,
-            format: string
+            format?: string
         ): string;
 
         function icon(
             guildID: string,
             guildIcon: string,
-            format: string
+            format?: string
         ): string;
 
         function splash(
             guildID: string,
             guildSplash: string,
-            format: string
+            format?: string
         ): string;
 
         function banner(
             guildID: string,
             guildBanner: string,
-            format: string
+            format?: string
         ): string;
 
         function defaultAvatar(
             id: string,
-            format: string
+            format?: string
         ): string;
 
         function avatar(
             userID: string,
             userAvatar: string,
-            format: string
+            format?: string
         ): string;
     }
 
     namespace ws {
-        /*
         function sendWS(
             ws: WebSocket,
             op: number,
             d: any
         ): void;
-        */
 
-        const clients: Array<object>;
+        const clients: object[];
 
         function connect(
             token: string,
@@ -825,8 +844,8 @@ declare namespace Harmony {
 
         function initializeShards(
             token: string,
-            shardCount: number,
-            options: WebSocket.ClientOptions
+            shardCount?: number,
+            options?: WebSocket.ClientOptions
         ): WebSocket[];
     }
 }

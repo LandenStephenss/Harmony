@@ -48,8 +48,14 @@ const emojis = (guildID) => `guilds/${guildID}/emojis`;
  * @arg {String} guildID The guild's id
  * @returns {Promise<Object>}
  */
-const getGuild = (token, guildID) =>
-  request('GET', guild(guildID), token);
+const getGuild = (token, guildID) => request('GET', guild(guildID), token);
+
+/**
+ * Get the guilds the bot is in
+ * @arg {String} token Token used for authorizing the request
+ * @returns {Promise<Object[]>}
+ */
+const getGuilds = (token) => request('GET', 'users/@me/guilds', token);
 
 /**
  * Create a guild
@@ -482,6 +488,7 @@ module.exports = {
     emojis
   },
   getGuild,
+  getGuilds,
   createGuild,
   deleteGuild,
   leaveGuild,
