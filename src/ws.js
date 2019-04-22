@@ -4,7 +4,6 @@ const WebSocket = require('ws');
 
 const gateway = require('./rest/gateway');
 
-
 const clients = [];
 
 const sendWS = (ws, op, d) => ws.send(JSON.stringify({ op, d }));
@@ -128,7 +127,7 @@ const connect = (token, gatewayURL, options, id, shardCount, z) => {
       }
 
       case 'GUILD_ROLE_CREATE': {
-        clients[z].guilds[y.guild_id].roles[y.id] = y;
+        clients[z].guilds[y.guild_id].roles[y.role.id] = y;
         break;
       }
 
@@ -154,10 +153,17 @@ const connect = (token, gatewayURL, options, id, shardCount, z) => {
         p.activities = y.activities;
         break;
       }
+
+      case 'MESSAGE_CREATE': {
+        if (y.type === 6) {
+          y.content = `<@${y.author.id}> pinned a message to this channel. `
+          + '**See all the pins.**';
+        }
+      }
     }
 
     ws.emit(data.t, y);
-    ws.emit('debug', data);
+    ws.emit('debug', y);
   });
   return ws;
 };
@@ -182,9 +188,9 @@ const initializeShards = async (token, shardCount, options) => {
     if (shardCount === undefined) {
       count = gw.shards;
     }
-  } else
+  } else {
     gw = await gateway.getGateway();
-
+  }
   const shards = new Array(count);
 
   for (let i = 0; i < count; ++i) {
