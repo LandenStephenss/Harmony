@@ -200,13 +200,13 @@ declare module 'harmony' {
                 token: string,
                 options: {
                     name: string,
-                    region: string,
-                    icon: string,
-                    verification_level: number,
-                    default_message_notifications: number,
-                    explicit_content_filter: number
-                    roles: object[],
-                    channels: object[]
+                    region?: string,
+                    icon?: string,
+                    verification_level?: number,
+                    default_message_notifications?: number,
+                    explicit_content_filter?: number,
+                    roles?: object[],
+                    channels?: object[]
                 }
             ): Promise<object>;
 
@@ -847,5 +847,19 @@ declare module 'harmony' {
             shardCount?: number,
             options?: WebSocket.ClientOptions
         ): WebSocket[];
+
+        function editStatus(
+            shard: WebSocket,
+            options: {
+                since?: number,
+                game?: {
+                    name: string,
+                    type: number,
+                    url?: string
+                }
+                status?: string,
+                afk?: boolean
+            }
+        ): void;
     }
 }

@@ -5,13 +5,14 @@ const zlib = require('zlib');
 
 const userAgent = 'DiscordBot (https://github.com/Apacheli/Harmony, 0.1.0)';
 
+const query = (obj) => Object.keys(obj).map((key) =>
+  `${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`).join('&');
+
 const request = (method, path, token, body, reason) => {
   return new Promise((resolve, reject) => {
     let url = `/api/v7/${path}`;
     if (method === 'GET' && body !== undefined) {
-      url += `?${Object.keys(body).map((key) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`)
-        .join('&')}`;
+      url += `?${query(body)}`;
     }
     const req = https.request({
       headers: {
@@ -59,4 +60,5 @@ const request = (method, path, token, body, reason) => {
   });
 }
 
+request.query = query;
 module.exports = request;

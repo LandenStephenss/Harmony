@@ -1,8 +1,8 @@
 'use strict';
 
 const WebSocket = require('ws');
-
 const gateway = require('./rest/gateway');
+const request = require('./rest/request');
 
 const clients = [];
 
@@ -146,24 +146,27 @@ const connect = (token, gatewayURL, options, id, shardCount, z) => {
       }
 
       case 'PRESENCE_UPDATE': {
-        const p = clients[z].guilds[y.guild_id].members[y.user.id].presence;
-        p.status = y.status;
-        p.game = y.game;
-        p.client_status = y.client_status;
-        p.activities = y.activities;
+        const member = clients[z].guilds[y.guild_id].members[y.user.id];
+        if (member !== undefined) {
+          const p = member.presence;
+          p.status = y.status;
+          p.game = y.game;
+          p.client_status = y.client_status;
+          p.activities = y.activities;
+        }
         break;
       }
 
       case 'MESSAGE_CREATE': {
         if (y.type === 6) {
           y.content = `<@${y.author.id}> pinned a message to this channel. `
-          + '**See all the pins.**';
+            + '**See all the pins.**';
         }
       }
     }
 
-    ws.emit(data.t, y);
     ws.emit('debug', y);
+    ws.emit(data.t, y);
   });
   return ws;
 };
@@ -175,9 +178,13 @@ let x = -1;
  * @arg {String} token Token sent to create a connection
  * @arg {Number} [shardCount] Number of shards to connect
  * @arg {Object} [options] WebSocket options
+ * @arg {Object} [urlOptions] Options for the url
+ * @arg {String} [urlOptions.v] The version
+ * @arg {String} [urlOptions.encoding] Type of encoding, json or etf
+ * @arg {String} [urlOptions.compress] Compress with zlib-stream
  * @returns {Promise<Object[]>}
  */
-const initializeShards = async (token, shardCount, options) => {
+const initializeShards = async (token, shardCount, options, urlOptions) => {
   let gw;
   ++x;
 
@@ -192,6 +199,9 @@ const initializeShards = async (token, shardCount, options) => {
     gw = await gateway.getGateway();
   }
   const shards = new Array(count);
+  if (urlOptions !== undefined) {
+    gw.url += `?${request.query(urlOptions)}`;
+  }
 
   for (let i = 0; i < count; ++i) {
     shards[i] = connect(token, gw.url, options, i, count, x);

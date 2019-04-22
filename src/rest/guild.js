@@ -63,13 +63,13 @@ const getGuilds = (token) => request('GET', 'users/@me/guilds', token);
  * @arg {String} token Token used for authorizing the request
  * @arg {Object} options Options for the request
  * @arg {String} options.name The guild's name
- * @arg {String} options.region The guild's region
- * @arg {String} options.icon The guild's icon
- * @arg {Number} options.verification_level The verification level
- * @arg {Number} options.default_message_notifications Message notifications
- * @arg {Number} options.explicit_content_filter The content filter
- * @arg {Object[]} options.roles An array of roles to create with
- * @arg {Object[]} options.channels An array of channels to create with
+ * @arg {String} [options.region] The guild's region
+ * @arg {String} [options.icon] The guild's icon
+ * @arg {Number} [options.verification_level] The verification level
+ * @arg {Number} [options.default_message_notifications] Message notifications
+ * @arg {Number} [options.explicit_content_filter] The content filter
+ * @arg {Object[]} [options.roles] An array of roles to create with
+ * @arg {Object[]} [options.channel] An array of channels to create with
  * @returns {Promise<Object>}
  */
 const createGuild = (token, options) =>
