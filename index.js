@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = {
+  commands: {
+    command: require('./src/commands/Command'),
+    commander: require('./src/commands/Commander')
+  },
   rest: {
     channel: require('./src/rest/channel'),
     gateway: require('./src/rest/gateway'),

@@ -6,7 +6,7 @@ const zlib = require('zlib');
 const userAgent = 'DiscordBot (https://github.com/Apacheli/Harmony, 0.1.0)';
 
 const query = (obj) => Object.keys(obj).map((key) =>
-  `${encodeURIComponent(key)}=${encodeURIComponent(body[key])}`).join('&');
+  `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`).join('&');
 
 const request = (method, path, token, body, reason) => {
   return new Promise((resolve, reject) => {

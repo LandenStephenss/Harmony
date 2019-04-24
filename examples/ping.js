@@ -1,4 +1,4 @@
-const harmony = require('harmony');
+const harmony = require('@apacheli/harmony');
 const token = 'Bot TOKEN';
 
 const onMessageCreate = (msg) => {

@@ -7,11 +7,11 @@ A [Node.js](https://nodejs.org/) wrapper for making [Discord](https://discordapp
 * Full coverage over Discord's API (not yet)
 * High-level, functional interface
 * Asynchronous I/O operations
-* Built-in, easily extendable command framework (not yet)
+* Built-in, easily extendable command framework
 
 ## Example
 ```js
-const harmony = require('harmony');
+const harmony = require('@apacheli/harmony');
 const token = 'Bot TOKEN';
 
 const onMessageCreate = (msg) => {

@@ -1,5 +1,5 @@
 {
-  "name": "harmony",
+  "name": "@apacheli/harmony",
   "version": "0.1.0",
   "description": "A Node.js wrapper for making Discord bots.",
   "main": "index.js",

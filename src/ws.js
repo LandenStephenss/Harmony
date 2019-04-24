@@ -165,8 +165,8 @@ const connect = (token, gatewayURL, options, id, shardCount, z) => {
       }
     }
 
-    ws.emit('debug', y);
-    ws.emit(data.t, y);
+    ws.emit('debug', data, id);
+    ws.emit(data.t, y, id);
   });
   return ws;
 };
