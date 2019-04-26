@@ -199,7 +199,7 @@ const initializeShards = async (token, shardCount, options, urlOptions) => {
     gw = await gateway.getGateway();
   }
   const shards = new Array(count);
-  if (urlOptions !== undefined) {
+  if (urlOptions != null) {
     gw.url += `?${request.query(urlOptions)}`;
   }
 

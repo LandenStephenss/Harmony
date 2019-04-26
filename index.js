@@ -2,8 +2,8 @@
 
 module.exports = {
   commands: {
-    command: require('./src/commands/Command'),
-    commander: require('./src/commands/Commander')
+    Command: require('./src/commands/Command'),
+    Commander: require('./src/commands/Commander')
   },
   rest: {
     channel: require('./src/rest/channel'),

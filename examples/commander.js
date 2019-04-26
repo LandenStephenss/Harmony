@@ -11,9 +11,9 @@ const bot = new harmony.commands.Commander({
 
 bot.createCommand({
   name: 'ping',
-  run() {
-    return { content: 'Ping!' };
-  }
+  aliases: ['pong'],
+  run: () => ({ content: 'Pong!' })
 });
-bot.handleMessageCreate();
+
+bot.handleMessageEvents();
 bot.connect();

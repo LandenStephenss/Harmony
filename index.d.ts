@@ -2,7 +2,7 @@
  * Type definitions for Apacheli/Harmony discord lib, by o_Hinoki.
  */
 
-declare module 'harmony' {
+declare module '@apacheli/harmony' {
     import * as WebSocket from 'ws';
 
     interface ChannelOptions {
