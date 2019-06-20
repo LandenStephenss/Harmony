@@ -1,0 +1,32 @@
+{
+  "name": "harmony-rewrite",
+  "version": "1.0.0",
+  "description": "A Discord bot framework for the Node.js environment.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apacheli/Harmony.git"
+  },
+  "keywords": [
+    "harmony",
+    "discord",
+    "discord-api",
+    "bot",
+    "nodejs"
+  ],
+  "author": "Apacheli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Apacheli/Harmony/issues"
+  },
+  "homepage": "https://github.com/Apacheli/Harmony#readme",
+  "dependencies": {
+    "ws": "^7.0.0"
+  }
+}
