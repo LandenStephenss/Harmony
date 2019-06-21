@@ -1,5 +1,5 @@
-const Harmony = require('@apacheli/Harmony');
-const bot = Harmony.ws.createClient('TOKEN');
+const Harmony = require('@apacheli/harmony');
+const bot = Harmony.ws.createClient('Bot TOKEN');
 
 bot.emitter.on('ready', () => {
   // eslint-disable-next-line no-console

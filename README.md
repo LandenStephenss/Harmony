@@ -4,18 +4,17 @@
 A [Discord](https://discordapp.com/) bot framework for the [Node.js](https://nodejs.org/) environment.
 
 ## Installing
-You'll need Node.js 10 or higher.
+You'll need Node.js 10 or higher. Go [here](https://nodejs.org/) if you haven't installed it.
 ```
 npm install @apacheli/harmony
 ```
 
 ## Sample
 ```js
-const Harmony = require('@apacheli/Harmony');
-const bot = Harmony.ws.createClient('TOKEN');
+const Harmony = require('@apacheli/harmony');
+const bot = Harmony.ws.createClient('Bot TOKEN');
 
 bot.emitter.on('ready', () => {
-  // eslint-disable-next-line no-console
   console.log('I am ready!');
 });
 
@@ -27,7 +26,7 @@ bot.emitter.on('messageCreate', (msg) => {
 
 bot.connect();
 ```
-More samples can be found [here](https://github.com/Apacheli/Harmony/tree/rewrite/lib) in the samples directory.
+More samples can be found [here](https://github.com/Apacheli/Harmony/tree/rewrite/samples) in the samples directory.
 
 ## Support
 Feel free to join the [Discord](https://discord.gg/rNPmCBR) server if you need support.
