@@ -4,7 +4,7 @@
 A [Discord](https://discordapp.com/) bot framework for the [Node.js](https://nodejs.org/) environment.
 
 ## Installing
-You'll need Node.js 10 or higher. Go [here](https://nodejs.org/) if you haven't installed it.
+You'll need Node.js 10 or higher. Go [here](https://nodejs.org/) to install it.
 ```
 npm install @apacheli/harmony
 ```
