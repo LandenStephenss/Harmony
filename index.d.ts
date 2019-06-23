@@ -15,7 +15,7 @@ declare module 'harmony' {
   export const ws: {
     connect: (token: string, shardCount?: number, client?: object) => Promise<object>,
     createClient: (token: string, count?: number, addMethods?: boolean) => object,
-    identifyShard: (token: string, client: object, shard: { ws: WebSocket }) => void,
+    identifyShard: (token: string, client: object, shard: object) => void,
     sendWS: (ws: WebSocket, op: number, d: object) => void,
     spawnShard: (token: string, client: object, url: string, id: number) => object,
     updateStatus: (shard: object, data: {

@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  events: require('./lib/events'),
   interfaces: {
     Channel: require('./lib/interfaces/Channel'),
     Emoji: require('./lib/interfaces/Emoji'),
