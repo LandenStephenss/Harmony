@@ -29,4 +29,4 @@ bot.connect();
 More samples can be found [here](https://github.com/Apacheli/Harmony/tree/rewrite/samples) in the samples directory.
 
 ## Support
-Feel free to join the [Discord](https://discord.gg/rNPmCBR) server if you need support.
+Feel free to join the [Discord](https://discord.gg/rNPmCBR) server for support.

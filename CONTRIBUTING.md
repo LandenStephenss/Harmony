@@ -2,7 +2,7 @@
 Hello, thanks for taking the time to think about contributing to Harmony. Feel free to clone and fork the repository.
 
 ## Notes
-* The issue tracker will only be used for bugs and suggestions. If any support is needed, please consider joining the [Discord](https://discord.gg/rNPmCBR) server.
+* The issue tracker is only used for bugs and suggestions. If any support is needed, please consider joining the [Discord](https://discord.gg/rNPmCBR) server.
 * If a property is `undefined` when it should be `null`, it's considered a bug.
 
 ## Rules
