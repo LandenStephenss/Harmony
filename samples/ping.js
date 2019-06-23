@@ -1,5 +1,6 @@
 const Harmony = require('@apacheli/harmony');
-const bot = Harmony.ws.createClient('Bot TOKEN');
+const token = 'Bot TOKEN';
+const bot = Harmony.ws.createClient(token);
 
 bot.emitter.on('ready', () => {
   // eslint-disable-next-line no-console
@@ -8,8 +9,10 @@ bot.emitter.on('ready', () => {
 
 bot.emitter.on('messageCreate', (msg) => {
   if (msg.content === 'ping') {
-    bot.createMessage(msg.channelID, { content: 'Pong!' });
+    Harmony.ws.createMessage(token, msg.channelID, {
+      content: 'Pong!'
+    });
   }
 });
 
-bot.connect();
+Harmony.ws.connect(token, null, bot);
