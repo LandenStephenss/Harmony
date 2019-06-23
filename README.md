@@ -21,7 +21,7 @@ bot.emitter.on('ready', () => {
 
 bot.emitter.on('messageCreate', (msg) => {
   if (msg.content === 'ping') {
-    Harmony.ws.createMessage(token, msg.channelID, {
+    Harmony.rest.createMessage(token, msg.channelID, {
       content: 'Pong!'
     });
   }
