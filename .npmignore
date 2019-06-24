@@ -1,0 +1,5 @@
+.eslintrc.yml
+CONTRIBUTING.md
+changelog.md
+node_modules
+test.js
