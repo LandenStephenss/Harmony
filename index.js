@@ -17,5 +17,6 @@ module.exports = {
     id: require('./lib/util/id'),
     write: require('./lib/util/write')
   },
+  version: require('./package.json').version,
   ws: require('./lib/ws')
 };
