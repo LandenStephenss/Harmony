@@ -14,7 +14,7 @@ npm install @apacheli/harmony
 ```js
 const Harmony = require('@apacheli/harmony');
 const token = 'Bot TOKEN';
-const bot = Harmony.ws.createClient(token);
+const bot = Harmony.ws.createClient();
 
 bot.emitter.on('ready', () => {
   console.log('I am ready!');
@@ -28,7 +28,7 @@ bot.emitter.on('messageCreate', (msg) => {
   }
 });
 
-Harmony.ws.connect(token, null, bot);
+Harmony.ws.connect(token, bot);
 ```
 More samples can be found [here](https://github.com/Apacheli/Harmony/tree/rewrite/samples).
 

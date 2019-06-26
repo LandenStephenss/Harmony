@@ -1,6 +1,6 @@
 const Harmony = require('@apacheli/harmony');
 const token = 'Bot TOKEN';
-const bot = Harmony.ws.createClient(token);
+const bot = Harmony.ws.createClient();
 
 bot.emitter.on('ready', () => {
   // eslint-disable-next-line no-console
@@ -15,4 +15,4 @@ bot.emitter.on('messageCreate', (msg) => {
   }
 });
 
-Harmony.ws.connect(token, null, bot);
+Harmony.ws.connect(token, bot);
