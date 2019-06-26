@@ -9,4 +9,4 @@ Hello, thanks for taking the time to think about contributing to Harmony. Feel f
 * Code must remain consistent with the current style. Make sure to install [ESLint](https://eslint.org/), and then use the set configuration.
 * Make sure to contact Apacheli#6009 on Discord if any breaking changes are being added.
 
-~~A cool role can be obtained if a lot of contributing is done.~~
+~~People who contribute a lot may earn an awesome role.~~
