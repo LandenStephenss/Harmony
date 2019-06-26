@@ -1,6 +1,5 @@
 declare module 'harmony' {
   import * as EventEmitter from 'events';
-  import * as timers from 'timers';
   import * as WebSocket from 'ws';
   interface Activity {
     applicationID: string,
@@ -189,6 +188,12 @@ declare module 'harmony' {
     topic: string,
     type: number
   }
+  interface User {
+    avatar: string,
+    discriminator: string,
+    id: string,
+    username: string
+  }
   interface VoiceChannel {
     bitrate: number,
     id: string,
@@ -245,6 +250,8 @@ declare module 'harmony' {
     },
     message: {
       create: (data: object, client: Client) => Message,
+      getContent: (data: object, client: Client) => string,
+      joinMessages: string[],
       update: (message: Message, data: object) => void
     },
     presence: {
