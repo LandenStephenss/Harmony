@@ -4,9 +4,9 @@ declare module 'harmony' {
   interface Activity {
     applicationID: string,
     assets: object,
-    details: object,
+    details: string,
     flags: object,
-    instance: object,
+    instance: boolean,
     name: string,
     party: object,
     timestamps: object,
@@ -268,6 +268,12 @@ declare module 'harmony' {
   export const rest: {
     bulkDeleteMessages: (token: string, channelID: string, messages: string[]) => Promise<void>,
     createChannel: (token: string, guildID: string, options: object) => Promise<object>,
+    createInvite: (token: string, options?: {
+      max_age?: number,
+      max_uses?: number,
+      temporary: boolean,
+      unique: boolean
+    }) => Promise<object>,
     createMessage: (token: string, channelID: string, options: {
       content?: string,
       embed: object,
@@ -280,6 +286,7 @@ declare module 'harmony' {
     deleteMessage: (token: string, channelID: string, messageID: string) => Promise<object>,
     deleteChannel: (token: string, channelID: string) => Promise<void>,
     deleteReaction: (token: string, channelID: string, messageID: string, emoji: string, user?: string) => Promise<void>,
+    deleteInvite: (token: string, inviteCode: string) => Promise<void>,
     deleteOverwrite: (token: string, channelID: string, overwriteID: string) => Promise<void>,
     editChannel: (token: string, channelID: string, options: object) => Promise<void>,
     editChannelPositions: (token: string, channelID: string, channels: object[]) => Promise<void>,
@@ -293,9 +300,12 @@ declare module 'harmony' {
       type: string
     }) => Promise<void>,
     getBotGateway: (token: string) => Promise<object>,
-    getGateway: () => Promise<object>,
     getChannel: (token: string, channelID: string) => Promise<object>,
+    getChannelInvites: (token: string, channelID: string) => Promise<object[]>,
     getChannels: (token: string, guildID: string) => Promise<object[]>,
+    getGateway: () => Promise<object>,
+    getGuildInvites: (token: string, guildID: string) => Promise<object[]>,
+    getInvite: (token: string, inviteCode: string) => Promise<object>,
     getMessage: (token: string, channelID: string, messageID: string) => Promise<object>,
     getMessages: (token: string, channelID: string, options?: {
       after?: string,
