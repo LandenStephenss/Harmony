@@ -15,4 +15,4 @@ bot.emitter.on('messageCreate', (msg) => {
   }
 });
 
-Harmony.ws.connect(token, bot);
+Harmony.ws.connect(token, null, bot);

@@ -267,22 +267,35 @@ declare module 'harmony' {
   export const request: (method: string, path: string, token?: string, body?: object, reason?: string) => Promise<object>;
   export const rest: {
     bulkDeleteMessages: (token: string, channelID: string, messages: string[]) => Promise<void>,
+    createChannel: (token: string, guildID: string, options: object) => Promise<object>,
     createMessage: (token: string, channelID: string, options: {
       content?: string,
       embed: object,
       nonce: string,
       tts: boolean
     }) => Promise<object>,
+    createPrivateChannel: (token: string, userID: string) => Promise<object>,
     createReaction: (token: string, channelID: string, messageID: string, emoji: string) => Promise<void>,
     deleteAllReactions: (token: string, channelID: string, messageID: string) => Promise<void>,
     deleteMessage: (token: string, channelID: string, messageID: string) => Promise<object>,
+    deleteChannel: (token: string, channelID: string) => Promise<void>,
     deleteReaction: (token: string, channelID: string, messageID: string, emoji: string, user?: string) => Promise<void>,
+    deleteOverwrite: (token: string, channelID: string, overwriteID: string) => Promise<void>,
+    editChannel: (token: string, channelID: string, options: object) => Promise<void>,
+    editChannelPositions: (token: string, channelID: string, channels: object[]) => Promise<void>,
     editMessage: (token: string, channelID: string, messageID: string, options: {
       content?: string,
       embed?: object
     }) => Promise<object>,
+    editOverwrite: (token: string, channelID: string, options: {
+      allow: number,
+      deny: number,
+      type: string
+    }) => Promise<void>,
     getBotGateway: (token: string) => Promise<object>,
     getGateway: () => Promise<object>,
+    getChannel: (token: string, channelID: string) => Promise<object>,
+    getChannels: (token: string, guildID: string) => Promise<object[]>,
     getMessage: (token: string, channelID: string, messageID: string) => Promise<object>,
     getMessages: (token: string, channelID: string, options?: {
       after?: string,
@@ -298,6 +311,7 @@ declare module 'harmony' {
       limit?: number
     }) => Promise<object[]>,
     pinMessage: (token: string, channelID: string, messageID: string) => Promise<void>,
+    typeIn: (token: string, channelID: string) => Promise<void>,
     unpinMessage: (token: string, channelID: string, messageID: string) => Promise<void>
   };
   export const util: {
@@ -311,6 +325,7 @@ declare module 'harmony' {
   export const ws: {
     connect: (token: string, shardCount?: number, client?: Client) => Promise<object>,
     createClient: (token: string, count?: number) => object,
+    createShard: (id: number, ws: WebSocket) => Shard,
     identifyShard: (token: string, client: Client, shard: Shard) => void,
     sendWS: (ws: WebSocket, op: number, d: object) => void,
     spawnShard: (token: string, client: Client, url: string, id: number) => object,

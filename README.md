@@ -28,7 +28,7 @@ bot.emitter.on('messageCreate', (msg) => {
   }
 });
 
-Harmony.ws.connect(token, bot);
+Harmony.ws.connect(token, null, bot);
 ```
 More samples can be found [here](https://github.com/Apacheli/Harmony/tree/rewrite/samples).
 
