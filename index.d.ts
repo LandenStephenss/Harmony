@@ -5,7 +5,7 @@ declare module 'harmony' {
     applicationID: string,
     assets: object,
     details: string,
-    flags: object,
+    flags: number,
     instance: boolean,
     name: string,
     party: object,
@@ -305,7 +305,9 @@ declare module 'harmony' {
     getChannels: (token: string, guildID: string) => Promise<object[]>,
     getGateway: () => Promise<object>,
     getGuildInvites: (token: string, guildID: string) => Promise<object[]>,
-    getInvite: (token: string, inviteCode: string) => Promise<object>,
+    getInvite: (token: string, inviteCode: string, options?: {
+      with_count?: boolean
+    }) => Promise<object>,
     getMessage: (token: string, channelID: string, messageID: string) => Promise<object>,
     getMessages: (token: string, channelID: string, options?: {
       after?: string,
@@ -326,7 +328,7 @@ declare module 'harmony' {
   };
   export const util: {
     id: {
-      toSnowflake: (timestamp: number) => number,
+      toSnowflake: (timestamp: string | number) => number,
       toTimestamp: (snowflake: string | number) => number
     },
     write: (msg: string, type: number) => boolean
@@ -334,7 +336,7 @@ declare module 'harmony' {
   export const version: number;
   export const ws: {
     connect: (token: string, shardCount?: number, client?: Client) => Promise<object>,
-    createClient: (token: string, count?: number) => object,
+    createClient: () => Client,
     createShard: (id: number, ws: WebSocket) => Shard,
     identifyShard: (token: string, client: Client, shard: Shard) => void,
     sendWS: (ws: WebSocket, op: number, d: object) => void,
