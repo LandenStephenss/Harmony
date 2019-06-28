@@ -10,8 +10,8 @@ rules:
   indent: [error, 2, SwitchCase: 1]
   max-len: error
   max-statements-per-line: error
-  no-multiple-empty-lines: [2, max: 1]
+  no-multiple-empty-lines: [error, max: 1]
   quotes: [error, single]
   semi: error
-  sort-keys: [2, asc, caseSensitive: false]
-  sort-vars: [2, ignoreCase: true]
+  sort-keys: [error, asc, caseSensitive: false]
+  sort-vars: [error, ignoreCase: true]
