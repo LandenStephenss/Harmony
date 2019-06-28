@@ -1,14 +1,17 @@
 env:
-  es6: y
-  node: y
+  es6: true
+  node: true
 extends: eslint:recommended
 parserOptions:
   ecmaVersion: 2019
 rules:
-  arrow-parens: 2
-  curly: 2
-  indent: [2, 2, SwitchCase: 1]
-  max-len: 2
-  max-statements-per-line: 2
-  quotes: [2, single]
-  semi: 2
+  arrow-parens: error
+  curly: error
+  indent: [error, 2, SwitchCase: 1]
+  max-len: error
+  max-statements-per-line: error
+  no-multiple-empty-lines: [2, max: 1]
+  quotes: [error, single]
+  semi: error
+  sort-keys: [2, asc, caseSensitive: false]
+  sort-vars: [2, ignoreCase: true]
