@@ -266,14 +266,18 @@ declare module 'harmony' {
   };
   export const request: (method: string, path: string, token?: string, body?: object, reason?: string) => Promise<object>;
   export const rest: {
+    __endpoints__: object,
+    addMemberRole: (token: string, guildID: string, userID: string, roleID: string) => Promise<void>,
+    banMember: (token: string, guildID: string, userID: string, days?: number) => Promise<void>,
     bulkDeleteMessages: (token: string, channelID: string, messages: string[]) => Promise<void>,
     createChannel: (token: string, guildID: string, options: object) => Promise<object>,
-    createInvite: (token: string, options?: {
+    createChannelInvite: (token: string, options?: {
       max_age?: number,
       max_uses?: number,
       temporary: boolean,
       unique: boolean
     }) => Promise<object>,
+    createGuild: (token: string, options: object) => Promise<object>,
     createMessage: (token: string, channelID: string, options: {
       content?: string,
       embed: object,
