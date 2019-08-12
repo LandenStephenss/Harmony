@@ -2,7 +2,7 @@
 [![Discord](https://canary.discordapp.com/api/guilds/536724303522299925/widget.png?style=shield)](https://discord.gg/rNPmCBR)
 [![https://img.shields.io/npm/v/@apacheli/harmony.svg](https://img.shields.io/npm/v/@apacheli/harmony.svg)](https://www.npmjs.com/package/@apacheli/harmony)
 
-A [Discord](https://discordapp.com/) bot framework for the [Node.js](https://nodejs.org/) environment.
+A [Discord](https://discordapp.com/) bot library for the [Node.js](https://nodejs.org/) environment.
 
 ## Installing
 Node.js 10 is required at the very minimum. Go [here](https://nodejs.org/) to install it.
