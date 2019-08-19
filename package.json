@@ -1,7 +1,7 @@
 {
-  "name": "harmony-rewrite",
+  "name": "@apacheli/harmony",
   "version": "1.0.0",
-  "description": "A Discord bot framework for the Node.js environment.",
+  "description": "A Discord bot library for the Node.js environment.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
