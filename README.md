@@ -1,4 +1,5 @@
 # Harmony
+## Top secret rewrite is currently in progress.
 [![Discord](https://canary.discordapp.com/api/guilds/536724303522299925/widget.png?style=shield)](https://discord.gg/rNPmCBR)
 [![https://img.shields.io/npm/v/@apacheli/harmony.svg](https://img.shields.io/npm/v/@apacheli/harmony.svg)](https://www.npmjs.com/package/@apacheli/harmony)
 
